@@ -48,12 +48,17 @@
 
         function generateStory() {
             if (grammar) {
-                let expansion = grammar.flatten("#origin#");
-                console.log("Generated Story:", expansion); // Debugging log
+                try {
+                    let expansion = grammar.flatten("#origin#");
+                    console.log("Generated Story:", expansion); // Debugging log
 
-                $("#output").fadeOut(500, function () {
-                    $(this).text(expansion).fadeIn(500);
-                });
+                    $("#output").fadeOut(500, function () {
+                        $(this).text(expansion).fadeIn(500);
+                    });
+                } catch (error) {
+                    console.error("Error generating story:", error);
+                    $("#output").text("Error: Failed to generate story. Check the console for details.");
+                }
             } else {
                 console.error("Grammar not loaded.");
                 $("#output").text("Failed to load grammar.");
@@ -67,29 +72,21 @@
             $.getJSON("Poe_Tracery.json")
                 .done(function (grammarData) {
                     console.log("JSON Loaded Successfully:", grammarData);
-                    grammar = tracery.createGrammar(grammarData);
-                    console.log("Grammar created:", grammar); // Debugging log
-                    generateStory(); // Generate the first story
-                    setInterval(generateStory, 10000); // Generate a new story every 10 seconds
+                    try {
+                        grammar = tracery.createGrammar(grammarData);
+                        console.log("Grammar created:", grammar); // Debugging log
+                        generateStory(); // Generate the first story
+                        setInterval(generateStory, 10000); // Generate a new story every 10 seconds
+                    } catch (error) {
+                        console.error("Error creating grammar:", error);
+                        $("#output").text("Error: Failed to create grammar. Check the console for details.");
+                    }
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     console.error("Error Loading JSON:", textStatus, errorThrown);
-                    $("#output").text("Error: Unable to load grammar file.");
+                    $("#output").text("Error: Unable to load grammar file. Check the console for details.");
                 });
         });
     </script>
-
-    <!-- Note about running a local server -->
-    <div style="margin-top: 20px; font-size: 0.8em; color: #888;">
-        <p>
-            <strong>Note:</strong> If you're running this file locally (e.g., opening it directly in your browser), 
-            you may encounter CORS issues when loading the JSON file. To avoid this, run a local server. 
-            For example, use Python's built-in server:
-        </p>
-        <pre style="background-color: #1e1e1e; padding: 10px; border-radius: 5px;">
-            python -m http.server 8000
-        </pre>
-        <p>Then open your browser to <a href="http://localhost:8000" style="color: #d4af37;">http://localhost:8000</a>.</p>
-    </div>
 </body>
 </html>
