@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gothic Poe Generator</title>
 
-    <!-- Load jQuery (CDN for reliability) -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Load jQuery -->
+    <script src="jquery-3.7.1.min.js"></script>
 
-    <!-- Load Tracery (CDN for reliability) -->
+    <!-- Load Tracery (CDN to ensure it works) -->
     <script src="https://cdn.jsdelivr.net/gh/galaxykate/tracery@master/tracery.min.js"></script>
 
     <style>
@@ -49,7 +49,7 @@
         function generateStory() {
             if (grammar) {
                 let expansion = grammar.flatten("#origin#");
-                console.log("Generated Story:", expansion);
+                console.log("Generated Story:", expansion); // Debugging log
 
                 $("#output").fadeOut(500, function () {
                     $(this).text(expansion).fadeIn(500);
@@ -63,13 +63,14 @@
         $(document).ready(function () {
             console.log("Document Ready: Attempting to load JSON...");
 
-            // Ensure JSON loads fresh by appending a cache-busting parameter
-            $.getJSON("Poe_Tracery.json?v=" + new Date().getTime())
+            // Load the JSON file
+            $.getJSON("Poe_Tracery.json")
                 .done(function (grammarData) {
                     console.log("JSON Loaded Successfully:", grammarData);
                     grammar = tracery.createGrammar(grammarData);
-                    generateStory();
-                    setInterval(generateStory, 10000);
+                    console.log("Grammar created:", grammar); // Debugging log
+                    generateStory(); // Generate the first story
+                    setInterval(generateStory, 10000); // Generate a new story every 10 seconds
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     console.error("Error Loading JSON:", textStatus, errorThrown);
@@ -77,5 +78,18 @@
                 });
         });
     </script>
+
+    <!-- Note about running a local server -->
+    <div style="margin-top: 20px; font-size: 0.8em; color: #888;">
+        <p>
+            <strong>Note:</strong> If you're running this file locally (e.g., opening it directly in your browser), 
+            you may encounter CORS issues when loading the JSON file. To avoid this, run a local server. 
+            For example, use Python's built-in server:
+        </p>
+        <pre style="background-color: #1e1e1e; padding: 10px; border-radius: 5px;">
+            python -m http.server 8000
+        </pre>
+        <p>Then open your browser to <a href="http://localhost:8000" style="color: #d4af37;">http://localhost:8000</a>.</p>
+    </div>
 </body>
 </html>
