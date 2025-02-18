@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gothic Poe Generator</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="tracery.min.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #d4af37;
+            font-family: "Georgia", serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2em;
+            text-shadow: 2px 2px 5px black;
+        }
+        #output {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #444;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            line-height: 1.6;
+        }
+        .fade {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dark Tales of the Macabre</h1>
+    <p id="output" class="fade">Loading...</p>
+
+    <script>
+        function generateStory() {
+            $.getJSON("Poe_Tracery.json", function(grammarData) {
+                var grammar = tracery.createGrammar(grammarData);
+                var expansion = grammar.flatten("#origin#");
+
+                $("#output").fadeOut(500, function() {
+                    $(this).text(expansion).fadeIn(500);
+                });
+            }).fail(function() {
+                $("#output").text("Failed to load grammar.");
+            });
+        }
+
+        $(document).ready(function() {
+            generateStory();
+            setInterval(generateStory, 10000);
+        });
+    </script>
+</body>
+</html>
