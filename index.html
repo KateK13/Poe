@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gothic Poe Generator</title>
+
+    <!-- Load jQuery -->
     <script src="jquery-3.7.1.min.js"></script>
-    <script src="tracery.min.js"></script>
+
+    <!-- Load Tracery (CDN to ensure it works) -->
+    <script src="https://cdn.jsdelivr.net/gh/galaxykate/tracery@master/tracery.min.js"></script>
+
     <style>
         body {
             background-color: #121212;
@@ -44,23 +49,29 @@
         function generateStory() {
             if (grammar) {
                 let expansion = grammar.flatten("#origin#");
+                console.log("Generated Story:", expansion); // Debugging log
 
                 $("#output").fadeOut(500, function () {
                     $(this).text(expansion).fadeIn(500);
                 });
             } else {
+                console.error("Grammar not loaded.");
                 $("#output").text("Failed to load grammar.");
             }
         }
 
         $(document).ready(function () {
+            console.log("Document Ready: Attempting to load JSON...");
+
             $.getJSON("Poe_Tracery.json")
                 .done(function (grammarData) {
+                    console.log("JSON Loaded Successfully:", grammarData);
                     grammar = tracery.createGrammar(grammarData);
                     generateStory();
                     setInterval(generateStory, 10000);
                 })
-                .fail(function () {
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error Loading JSON:", textStatus, errorThrown);
                     $("#output").text("Error: Unable to load grammar file.");
                 });
         });
