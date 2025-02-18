@@ -36,25 +36,33 @@
 </head>
 <body>
     <h1>Dark Tales of the Macabre</h1>
-    <p id="output" class="fade">Loading...</p>
+    <p id="output">Loading...</p>
 
     <script>
-        function generateStory() {
-            $.getJSON("Poe_Tracery.json", function(grammarData) {
-                var grammar = tracery.createGrammar(grammarData);
-                var expansion = grammar.flatten("#origin#");
+        let grammar;
 
-                $("#output").fadeOut(500, function() {
+        function generateStory() {
+            if (grammar) {
+                let expansion = grammar.flatten("#origin#");
+
+                $("#output").fadeOut(500, function () {
                     $(this).text(expansion).fadeIn(500);
                 });
-            }).fail(function() {
+            } else {
                 $("#output").text("Failed to load grammar.");
-            });
+            }
         }
 
-        $(document).ready(function() {
-            generateStory();
-            setInterval(generateStory, 10000);
+        $(document).ready(function () {
+            $.getJSON("Poe_Tracery.json")
+                .done(function (grammarData) {
+                    grammar = tracery.createGrammar(grammarData);
+                    generateStory();
+                    setInterval(generateStory, 10000);
+                })
+                .fail(function () {
+                    $("#output").text("Error: Unable to load grammar file.");
+                });
         });
     </script>
 </body>
