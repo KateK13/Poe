@@ -1,32 +1,60 @@
 {
-    "origin": ["#intro# #event# #climax# #conclusion#"],
-    
-    "intro": [
-      "It was a #adj.mood# night, the #noun.state# pressing upon my soul like a #noun.natural#.",
-      "Beneath the #noun.light#, a #adj.unnatural# mist coiled through the #noun.structure#, whispering of #noun.truth#.",
-      "The #noun.place# stood in #adj.mood# ruin, its #noun.structure# echoing with the #noun.sound# of something long forgotten.",
-      "A #noun.feeling# clung to the air, as if the #noun.living# itself had yet to #verb.state#."
-    ],
-  
-    "event": [
-      "I clutched my #noun.object# and wandered #adv.all#, my thoughts heavy with #noun.feeling#.",
-      "From the #noun.structure#, the sound of a #noun.living# #verb.communication# sent a chill through my #noun.bodypart#.",
-      "The wind carried a #noun.sound#, as though the #noun.living# from the #noun.place# called out to me.",
-      "The #adj.unnatural# glow of #noun.light# illuminated the #noun.structure#, revealing a presence that had not #verb.state# for ages."
-    ],
-  
-    "climax": [
-      "Then, with a #adv.all# #verb.emotion#, I turned to see it—its #noun.bodypart# outstretched, its #noun.attribute# gleaming under the #noun.light#.",
-      "A shadow #verb.motion# from the #noun.structure#, its #noun.bodypart# trembling as if resisting some unseen force.",
-      "The #noun.living# stood before me, its #noun.attribute# twisting into something neither dead nor living, but forever #verb.state#.",
-      "With an unholy #noun.sound#, the #noun.living# #verb.communication# my name, and I knew the #noun.truth# had come for me."
-    ],
-  
-    "conclusion": [
-      "My #noun.bodypart# trembled, and a #noun.sound# slipped from my lips as I realized the #noun.truth#: I was #verb.state#, forever #adv.all#.",
-      "A #noun.feeling# washed over me as I felt the #noun.living# reach through the veil of the #noun.place# to claim me.",
-      "I tried to #verb.action#, but the #adj.unnatural# force bound me, and the #noun.living# whispered of my fate.",
-      "The last thing I heard was the #noun.sound# of the #noun.structure# crumbling, and then—only silence."
-    ]
+  "origin": ["#intro# #event# #climax# #conclusion#"],
+
+  "intro": [
+    "It was a #adj.mood# night, the #noun.state# pressing upon my soul like a #noun.natural#.",
+    "Beneath the #noun.light#, a #adj.unnatural# mist coiled through the #noun.structure#, whispering of #noun.truth#.",
+    "The #noun.place# stood in #adj.mood# ruin, its #noun.structure# echoing with the #noun.sound# of something long forgotten.",
+    "A #noun.feeling# clung to the air, as if the #noun.living# itself had yet to #verb.state#."
+  ],
+
+  "event": [
+    "I clutched my #noun.object# and wandered #adv.all#, my thoughts heavy with #noun.feeling#.",
+    "From the #noun.structure#, the sound of a #noun.living# #verb.communication# sent a chill through my #noun.bodypart#.",
+    "The wind carried a #noun.sound#, as though the #noun.living# from the #noun.place# called out to me.",
+    "The #adj.unnatural# glow of #noun.light# illuminated the #noun.structure#, revealing a presence that had not #verb.state# for ages."
+  ],
+
+  "climax": [
+    "Then, with a #adv.all# #verb.emotion#, I turned to see it—its #noun.bodypart# outstretched, its #noun.attribute# gleaming under the #noun.light#.",
+    "A shadow #verb.motion# from the #noun.structure#, its #noun.bodypart# trembling as if resisting some unseen force.",
+    "The #noun.living# stood before me, its #noun.attribute# twisting into something neither dead nor living, but forever #verb.state#.",
+    "With an unholy #noun.sound#, the #noun.living# #verb.communication# my name, and I knew the #noun.truth# had come for me."
+  ],
+
+  "conclusion": [
+    "My #noun.bodypart# trembled, and a #noun.sound# slipped from my lips as I realized the #noun.truth#: I was #verb.state#, forever #adv.all#.",
+    "A #noun.feeling# washed over me as I felt the #noun.living# reach through the veil of the #noun.place# to claim me.",
+    "I tried to #verb.action#, but the #adj.unnatural# force bound me, and the #noun.living# whispered of my fate.",
+    "The last thing I heard was the #noun.sound# of the #noun.structure# crumbling, and then—only silence."
+  ],
+
+  "adj": {
+    "mood": ["#Poe_Ready.adj.mood#"],
+    "unnatural": ["#Poe_Ready.adj.unnatural#"]
+  },
+  "noun": {
+    "state": ["#Poe_Ready.noun.state#"],
+    "natural": ["#Poe_Ready.noun.natural#"],
+    "light": ["#Poe_Ready.noun.light#"],
+    "structure": ["#Poe_Ready.noun.structure#"],
+    "truth": ["#Poe_Ready.noun.truth#"],
+    "place": ["#Poe_Ready.noun.place#"],
+    "sound": ["#Poe_Ready.noun.sound#"],
+    "living": ["#Poe_Ready.noun.living#"],
+    "feeling": ["#Poe_Ready.noun.feeling#"],
+    "object": ["#Poe_Ready.noun.object#"],
+    "bodypart": ["#Poe_Ready.noun.bodypart#"],
+    "attribute": ["#Poe_Ready.noun.attribute#"]
+  },
+  "verb": {
+    "state": ["#Poe_Ready.verb.state#"],
+    "communication": ["#Poe_Ready.verb.communication#"],
+    "motion": ["#Poe_Ready.verb.motion#"],
+    "emotion": ["#Poe_Ready.verb.emotion#"],
+    "action": ["#Poe_Ready.verb.action#"]
+  },
+  "adv": {
+    "all": ["#Poe_Ready.adv.all#"]
   }
-  
+}
