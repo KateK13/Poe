@@ -53,6 +53,8 @@
                         base[key] = [];
                     }
                     base[key] = base[key].concat(extra[key]);
+                } else if (typeof extra[key] === 'object' && extra[key] !== null) {
+                    console.warn(`Skipping nested object: ${key}`);
                 }
             }
         }
