@@ -12656,5 +12656,11 @@
         "urge",
         "urges",
         "why"
+    ],
+    "origin": [
+        "#noun.quantity#",
+        "#noun.communication#",
+        "#adv.all#",
+        "#noun.attribute#"
     ]
 }
