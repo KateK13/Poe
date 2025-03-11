@@ -48,10 +48,11 @@
 
         function mergeGrammar(base, extra) {
             for (let key in extra) {
-                if (base[key]) {
+                if (Array.isArray(extra[key])) {
+                    if (!base[key]) {
+                        base[key] = [];
+                    }
                     base[key] = base[key].concat(extra[key]);
-                } else {
-                    base[key] = extra[key];
                 }
             }
         }
