@@ -8,7 +8,7 @@
     <!-- Load jQuery -->
     <script src="jquery-3.7.1.min.js"></script>
 
-    <!-- Load Tracery (CDN to ensure it works) -->
+    <!-- Load Tracery -->
     <script src="https://cdn.jsdelivr.net/gh/galaxykate/tracery@master/tracery.min.js"></script>
 
     <style>
@@ -46,21 +46,24 @@
     <script>
         let grammar;
 
+        function mergeGrammar(base, extra) {
+            for (let key in extra) {
+                if (base[key]) {
+                    base[key] = base[key].concat(extra[key]);
+                } else {
+                    base[key] = extra[key];
+                }
+            }
+        }
+
         function generateStory() {
             if (grammar) {
-                try {
-                    // Generate the story
-                    let expansion = grammar.flatten("#origin#");
-                    console.log("Generated Story:", expansion); // Debugging log
-
-                    // Display the story in the #output element
-                    $("#output").fadeOut(500, function () {
-                        $(this).text(expansion).fadeIn(500);
-                    });
-                } catch (error) {
-                    console.error("Error generating story:", error);
-                    $("#output").text("Error: Failed to generate story. Check the console for details.");
-                }
+                let expansion = grammar.flatten("#origin#");
+                console.log("Generated Story:", expansion);
+                
+                $("#output").fadeOut(500, function () {
+                    $(this).text(expansion).fadeIn(500);
+                });
             } else {
                 console.error("Grammar not loaded.");
                 $("#output").text("Failed to load grammar.");
@@ -68,31 +71,24 @@
         }
 
         $(document).ready(function () {
-            console.log("Document Ready: Attempting to load JSON...");
+            console.log("Document Ready: Attempting to load JSON files...");
 
-            // Load the JSON file
-            $.getJSON("Poe_Tracery.json")
-                .done(function (grammarData) {
-                    console.log("JSON Loaded Successfully:", grammarData);
-                    try {
-                        // Create the grammar
-                        grammar = tracery.createGrammar(grammarData);
-                        console.log("Grammar created:", grammar); // Debugging log
-
-                        // Generate the first story
-                        generateStory();
-
-                        // Generate a new story every 10 seconds
-                        setInterval(generateStory, 10000);
-                    } catch (error) {
-                        console.error("Error creating grammar:", error);
-                        $("#output").text("Error: Failed to create grammar. Check the console for details.");
-                    }
-                })
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error("Error Loading JSON:", textStatus, errorThrown);
-                    $("#output").text("Error: Unable to load grammar file. Check the console for details.");
-                });
+            $.when(
+                $.getJSON("Poe_Tracery.json"),
+                $.getJSON("Poe_Ready.json")
+            ).done(function (traceryData, readyData) {
+                console.log("JSON Files Loaded Successfully");
+                
+                let combinedGrammar = traceryData[0];
+                mergeGrammar(combinedGrammar, readyData[0]);
+                
+                grammar = tracery.createGrammar(combinedGrammar);
+                generateStory();
+                setInterval(generateStory, 10000);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error Loading JSON:", textStatus, errorThrown);
+                $("#output").text("Error: Unable to load grammar files.");
+            });
         });
     </script>
 </body>
