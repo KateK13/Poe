@@ -9,7 +9,7 @@
     <script src="jquery-3.7.1.min.js"></script>
 
     <!-- Load Tracery (CDN to ensure it works) -->
-    <script src="https://rawcdn.githack.com/galaxykate/tracery/11db07cb8e3564477de7b9d1eef0b5bb5bd6f391/js/tracery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/galaxykate/tracery@master/tracery.min.js"></script>
 
     <style>
         body {
@@ -63,43 +63,45 @@
         $(document).ready(function () {
             console.log("Document Ready: Attempting to load JSON...");
 
-            $.getJSON("Corrected_Poe_Tracery.json")
-                .done(function (grammarData) {
-                    console.log("JSON Loaded Successfully:", grammarData);
-                    
-                    // Ensure nested object rules are correctly formatted
-                    function flattenRules(data) {
-                        let flattened = {};
-                        for (let key in data) {
-                            if (Array.isArray(data[key])) {
-                                flattened[key] = data[key];
-                            } else if (typeof data[key] === 'object') {
-                                for (let subKey in data[key]) {
-                                    flattened[`${key}.${subKey}`] = data[key][subKey];
-                                }
+            $.when(
+                $.getJSON("Corrected_Poe_Tracery.json"),
+                $.getJSON("Poe_Ready.json")
+            ).done(function (traceryData, poeReadyData) {
+                console.log("Both JSON Files Loaded Successfully");
+                
+                let mergedData = { ...poeReadyData[0], ...traceryData[0] };
+                
+                function flattenRules(data) {
+                    let flattened = {};
+                    for (let key in data) {
+                        if (Array.isArray(data[key])) {
+                            flattened[key] = data[key];
+                        } else if (typeof data[key] === 'object') {
+                            for (let subKey in data[key]) {
+                                flattened[`${key}.${subKey}`] = data[key][subKey];
                             }
                         }
-                        return flattened;
                     }
-                    
-                    let processedData = flattenRules(grammarData);
-                    grammar = tracery.createGrammar(processedData);
-                    
-                    try {
-                        if (grammar.addModifiers) {
-                            grammar.addModifiers(tracery.baseEngModifiers);
-                        }
-                    } catch (error) {
-                        console.warn("Error applying modifiers:", error);
+                    return flattened;
+                }
+                
+                let processedData = flattenRules(mergedData);
+                grammar = tracery.createGrammar(processedData);
+                
+                try {
+                    if (grammar.addModifiers) {
+                        grammar.addModifiers(tracery.baseEngModifiers);
                     }
-                    
-                    generateStory();
-                    setInterval(generateStory, 10000);
-                })
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.error("Error Loading JSON:", textStatus, errorThrown);
-                    $("#output").text("Error: Unable to load grammar file.");
-                });
+                } catch (error) {
+                    console.warn("Error applying modifiers:", error);
+                }
+                
+                generateStory();
+                setInterval(generateStory, 10000);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error Loading JSON Files:", textStatus, errorThrown);
+                $("#output").text("Error: Unable to load grammar files.");
+            });
         });
     </script>
 </body>
