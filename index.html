@@ -69,7 +69,8 @@
             ).done(function (traceryData, poeReadyData) {
                 console.log("Both JSON Files Loaded Successfully");
                 
-                let mergedData = { ...poeReadyData[0], ...traceryData[0] };
+                let mergedData = traceryData;
+                mergedData["Poe_Ready"] = poeReadyData;
                 
                 function flattenRules(data) {
                     let flattened = {};
