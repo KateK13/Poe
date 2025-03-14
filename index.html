@@ -86,7 +86,9 @@
                     grammar = tracery.createGrammar(processedData);
                     
                     try {
-                        grammar.addModifiers(tracery.baseEngModifiers);
+                        if (grammar.addModifiers) {
+                            grammar.addModifiers(tracery.baseEngModifiers);
+                        }
                     } catch (error) {
                         console.warn("Error applying modifiers:", error);
                     }
