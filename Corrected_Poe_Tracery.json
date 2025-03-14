@@ -1,0 +1,100 @@
+{
+  "origin": [
+    "#intro# #event# #climax# #conclusion#"
+  ],
+  "intro": [
+    "It was a #adj.all# night, the #noun.state# pressing upon my soul like a #noun.phenomenon#.",
+    "Beneath the #noun.time#, a #adj.pert# mist coiled through the #noun.location#, whispering of #noun.cognition#.",
+    "The #noun.place# stood in #adj.all# ruin, its #noun.artifact# echoing with the #noun.communication# of something long forgotten.",
+    "A #noun.feeling# clung to the air, as if the #noun.animal# itself had yet to #verb.stative#."
+  ],
+  "event": [
+    "I clutched my #noun.object# and wandered #adv.all#, my thoughts heavy with #noun.feeling#.",
+    "From the #noun.location#, the sound of a #noun.animal# #verb.communication# sent a chill through my #noun.body#.",
+    "The wind carried a #noun.communication#, as though the #noun.animal# from the #noun.place# called out to me.",
+    "The #adj.pert# glow of #noun.substance# illuminated the #noun.location#, revealing a presence that had not #verb.stative# for ages."
+  ],
+  "climax": [
+    "Then, with a #adv.all# #verb.emotion#, I turned to see it\u2014its #noun.body# outstretched, its #noun.attribute# gleaming under the #noun.substance#.",
+    "A shadow #verb.motion# from the #noun.location#, its #noun.body# trembling as if resisting some unseen force.",
+    "The #noun.animal# stood before me, its #noun.attribute# twisting into something neither dead nor living, but forever #verb.stative#.",
+    "With an unholy #noun.communication#, the #noun.animal# #verb.communication# my name, and I knew the #noun.cognition# had come for me."
+  ],
+  "conclusion": [
+    "My #noun.body# trembled, and a #noun.communication# slipped from my lips as I realized the #noun.cognition#: I was #verb.stative#, forever #adv.all#.",
+    "A #noun.feeling# washed over me as I felt the #noun.animal# reach through the veil of the #noun.location# to claim me.",
+    "I tried to #verb.motion#, but the #adj.pert# force bound me, and the #noun.animal# whispered of my fate.",
+    "The last thing I heard was the #noun.communication# of the #noun.artifact# crumbling, and then\u2014only silence."
+  ],
+  "adj": {
+    "all": [
+      "#Poe_Ready.adj.all#"
+    ],
+    "pert": [
+      "#Poe_Ready.adj.pert#"
+    ]
+  },
+  "noun": {
+    "state": [
+      "#Poe_Ready.noun.state#"
+    ],
+    "phenomenon": [
+      "#Poe_Ready.noun.phenomenon#"
+    ],
+    "time": [
+      "#Poe_Ready.noun.time#"
+    ],
+    "location": [
+      "#Poe_Ready.noun.location#"
+    ],
+    "place": [
+      "#Poe_Ready.noun.place#"
+    ],
+    "artifact": [
+      "#Poe_Ready.noun.artifact#"
+    ],
+    "communication": [
+      "#Poe_Ready.noun.communication#"
+    ],
+    "cognition": [
+      "#Poe_Ready.noun.cognition#"
+    ],
+    "feeling": [
+      "#Poe_Ready.noun.feeling#"
+    ],
+    "animal": [
+      "#Poe_Ready.noun.animal#"
+    ],
+    "object": [
+      "#Poe_Ready.noun.object#"
+    ],
+    "body": [
+      "#Poe_Ready.noun.body#"
+    ],
+    "attribute": [
+      "#Poe_Ready.noun.attribute#"
+    ],
+    "substance": [
+      "#Poe_Ready.noun.substance#"
+    ]
+  },
+  "verb": {
+    "stative": [
+      "#Poe_Ready.verb.stative#"
+    ],
+    "communication": [
+      "#Poe_Ready.verb.communication#"
+    ],
+    "motion": [
+      "#Poe_Ready.verb.motion#"
+    ],
+    "emotion": [
+      "#Poe_Ready.verb.emotion#"
+    ]
+  },
+  "adv": {
+    "all": [
+      "#Poe_Ready.adv.all#"
+    ]
+  }
+}
