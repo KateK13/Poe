@@ -84,7 +84,13 @@
                     
                     let processedData = flattenRules(grammarData);
                     grammar = tracery.createGrammar(processedData);
-                    grammar.addModifiers(tracery.baseEngModifiers); // Add default English modifiers
+                    
+                    if (grammar && grammar.addModifiers) {
+                        grammar.addModifiers(tracery.baseEngModifiers); // Add default English modifiers
+                    } else {
+                        console.warn("Warning: grammar object does not support addModifiers");
+                    }
+                    
                     generateStory();
                     setInterval(generateStory, 10000);
                 })
