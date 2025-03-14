@@ -69,9 +69,6 @@
             ).done(function (traceryData, poeReadyData) {
                 console.log("Both JSON Files Loaded Successfully");
                 
-                let mergedData = traceryData;
-                mergedData["Poe_Ready"] = poeReadyData;
-                
                 function flattenRules(data) {
                     let flattened = {};
                     for (let key in data) {
@@ -86,8 +83,13 @@
                     return flattened;
                 }
                 
-                let processedData = flattenRules(mergedData);
-                grammar = tracery.createGrammar(processedData);
+                let processedTracery = flattenRules(traceryData);
+                let processedReady = flattenRules(poeReadyData);
+                
+                let mergedData = traceryData;
+                mergedData["Poe_Ready"] = poeReadyData;
+                
+                grammar = tracery.createGrammar(mergedData);
                 
                 try {
                     if (grammar.addModifiers) {
