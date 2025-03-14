@@ -1,5 +1,5 @@
 {
-    "noun.quantity": [
+    "noun_quantity": [
         "a",
         "acre",
         "are",
@@ -159,7 +159,7 @@
         "yards",
         "zaire"
     ],
-    "noun.communication": [
+    "noun_communication": [
         "ab",
         "abbreviation",
         "above",
@@ -900,7 +900,7 @@
         "yes",
         "yielding"
     ],
-    "adv.all": [
+    "adv_all": [
         "aback",
         "abruptly",
         "absolutely",
@@ -1538,7 +1538,7 @@
         "wonderfully",
         "yet"
     ],
-    "noun.attribute": [
+    "noun_attribute": [
         "abandon",
         "abilities",
         "ability",
@@ -2063,7 +2063,7 @@
         "wrong",
         "yellow"
     ],
-    "verb.possession": [
+    "verb_possession": [
         "abandoned",
         "abandoning",
         "accumulate",
@@ -2206,7 +2206,7 @@
         "withheld",
         "yielded"
     ],
-    "noun.act": [
+    "noun_act": [
         "abandonment",
         "abuse",
         "abuses",
@@ -2940,7 +2940,7 @@
         "yield",
         "yields"
     ],
-    "verb.emotion": [
+    "verb_emotion": [
         "abased",
         "admire",
         "admired",
@@ -3132,7 +3132,7 @@
         "worried",
         "worshipped"
     ],
-    "noun.state": [
+    "noun_state": [
         "abasement",
         "aberration",
         "abeyance",
@@ -3572,7 +3572,7 @@
         "wreck",
         "wretchedness"
     ],
-    "verb.change": [
+    "verb_change": [
         "abated",
         "absent",
         "absented",
@@ -3891,7 +3891,7 @@
         "widowed",
         "withered"
     ],
-    "noun.artifact": [
+    "noun_artifact": [
         "abbey",
         "abbeys",
         "accessory",
@@ -4817,7 +4817,7 @@
         "yardarms",
         "yawl"
     ],
-    "noun.body": [
+    "noun_body": [
         "abdomen",
         "alas",
         "ankle",
@@ -4965,7 +4965,7 @@
         "wrist",
         "wrists"
     ],
-    "noun.feeling": [
+    "noun_feeling": [
         "abhorrence",
         "admiration",
         "adoration",
@@ -5165,7 +5165,7 @@
         "wrath",
         "zeal"
     ],
-    "verb.stative": [
+    "verb_stative": [
         "abide",
         "abound",
         "abounding",
@@ -5462,7 +5462,7 @@
         "were",
         "withstand"
     ],
-    "adj.all": [
+    "adj_all": [
         "abject",
         "able",
         "abnormal",
@@ -6847,7 +6847,7 @@
         "youthful",
         "zealous"
     ],
-    "verb.motion": [
+    "verb_motion": [
         "absconded",
         "advanced",
         "alight",
@@ -7150,7 +7150,7 @@
         "writhes",
         "writhing"
     ],
-    "noun.cognition": [
+    "noun_cognition": [
         "absolute",
         "abstract",
         "abstraction",
@@ -7644,7 +7644,7 @@
         "wits",
         "wont"
     ],
-    "verb.communication": [
+    "verb_communication": [
         "absolved",
         "accede",
         "accosted",
@@ -8090,7 +8090,7 @@
         "whispered",
         "yowling"
     ],
-    "verb.contact": [
+    "verb_contact": [
         "absorbed",
         "absorbing",
         "adjoining",
@@ -8396,7 +8396,7 @@
         "wringing",
         "wrinkled"
     ],
-    "verb.cognition": [
+    "verb_cognition": [
         "abstracted",
         "accept",
         "accepted",
@@ -8655,7 +8655,7 @@
         "wondered",
         "wondering"
     ],
-    "verb.social": [
+    "verb_social": [
         "abusing",
         "accredited",
         "achieve",
@@ -8953,7 +8953,7 @@
         "wronged",
         "wrought"
     ],
-    "noun.object": [
+    "noun_object": [
         "abyss",
         "abysses",
         "africa",
@@ -9142,7 +9142,7 @@
         "worlds",
         "wormholes"
     ],
-    "noun.group": [
+    "noun_group": [
         "academies",
         "academy",
         "aged",
@@ -9375,7 +9375,7 @@
         "wounded",
         "york"
     ],
-    "noun.plant": [
+    "noun_plant": [
         "acanthus",
         "acumen",
         "alexander",
@@ -9507,7 +9507,7 @@
         "weld",
         "willow"
     ],
-    "noun.process": [
+    "noun_process": [
         "accession",
         "accretion",
         "accumulations",
@@ -9558,7 +9558,7 @@
         "warming",
         "wearing"
     ],
-    "noun.event": [
+    "noun_event": [
         "accident",
         "accidents",
         "accommodation",
@@ -9850,7 +9850,7 @@
         "yelpings",
         "z"
     ],
-    "noun.person": [
+    "noun_person": [
         "accomplice",
         "accomplices",
         "accused",
@@ -10776,7 +10776,7 @@
         "writers",
         "youth"
     ],
-    "verb.creation": [
+    "verb_creation": [
         "accomplish",
         "accomplished",
         "accomplishing",
@@ -10901,7 +10901,7 @@
         "written",
         "wrote"
     ],
-    "verb.perception": [
+    "verb_perception": [
         "ached",
         "appear",
         "appeared",
@@ -11058,7 +11058,7 @@
         "underwent",
         "watched"
     ],
-    "noun.substance": [
+    "noun_substance": [
         "acid",
         "adamant",
         "agate",
@@ -11270,7 +11270,7 @@
         "wood",
         "y"
     ],
-    "verb.consumption": [
+    "verb_consumption": [
         "addicted",
         "afford",
         "afforded",
@@ -11311,7 +11311,7 @@
         "tippling",
         "used"
     ],
-    "noun.location": [
+    "noun_location": [
         "adelaide",
         "america",
         "amsterdam",
@@ -11600,7 +11600,7 @@
         "zone",
         "zones"
     ],
-    "adj.pert": [
+    "adj_pert": [
         "aeronautic",
         "alluvial",
         "analytic",
@@ -11698,7 +11698,7 @@
         "volcanic",
         "zodiacal"
     ],
-    "noun.phenomenon": [
+    "noun_phenomenon": [
         "affinity",
         "attraction",
         "attractions",
@@ -11796,7 +11796,7 @@
         "winds",
         "zephyrs"
     ],
-    "noun.time": [
+    "noun_time": [
         "afternoon",
         "antiquities",
         "antiquity",
@@ -11978,7 +11978,7 @@
         "yesterday",
         "yore"
     ],
-    "noun.food": [
+    "noun_food": [
         "ails",
         "ale",
         "aliment",
@@ -12065,7 +12065,7 @@
         "wine",
         "wines"
     ],
-    "verb.competition": [
+    "verb_competition": [
         "aimed",
         "aiming",
         "armed",
@@ -12106,7 +12106,7 @@
         "waylaid",
         "wrestled"
     ],
-    "noun.animal": [
+    "noun_animal": [
         "algae",
         "ant",
         "ape",
@@ -12236,7 +12236,7 @@
         "worms",
         "young"
     ],
-    "verb.body": [
+    "verb_body": [
         "alleviate",
         "attired",
         "awake",
@@ -12320,7 +12320,7 @@
         "worn",
         "yawned"
     ],
-    "noun.possession": [
+    "noun_possession": [
         "allowances",
         "amount",
         "amounts",
@@ -12418,7 +12418,7 @@
         "valuable",
         "valuables"
     ],
-    "noun.shape": [
+    "noun_shape": [
         "angle",
         "angles",
         "arch",
@@ -12506,7 +12506,7 @@
         "wrinkles",
         "zigzag"
     ],
-    "noun.Tops": [
+    "noun_Tops": [
         "animal",
         "animals",
         "beast",
@@ -12544,7 +12544,7 @@
         "substance",
         "substances"
     ],
-    "noun.relation": [
+    "noun_relation": [
         "basis",
         "bearing",
         "bearings",
@@ -12625,7 +12625,7 @@
         "westward",
         "wsw"
     ],
-    "verb.weather": [
+    "verb_weather": [
         "blazed",
         "clouded",
         "drenched",
@@ -12642,7 +12642,7 @@
         "shone",
         "sparkled"
     ],
-    "noun.motive": [
+    "noun_motive": [
         "conscience",
         "ethics",
         "impulse",
