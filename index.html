@@ -66,7 +66,22 @@
             $.getJSON("Merged_Poe_Tracery.json")
                 .done(function (grammarData) {
                     console.log("JSON Loaded Successfully:", grammarData);
-                    grammar = tracery.createGrammar(grammarData);
+                    
+                    // Ensure nested object rules are flattened correctly
+                    function flattenRules(data) {
+                        let flattened = {};
+                        for (let key in data) {
+                            if (Array.isArray(data[key])) {
+                                flattened[key] = data[key];
+                            } else if (typeof data[key] === 'object') {
+                                Object.assign(flattened, flattenRules(data[key]));
+                            }
+                        }
+                        return flattened;
+                    }
+                    
+                    let processedData = flattenRules(grammarData);
+                    grammar = tracery.createGrammar(processedData);
                     generateStory();
                     setInterval(generateStory, 10000);
                 })
