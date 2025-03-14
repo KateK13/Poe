@@ -67,14 +67,16 @@
                 .done(function (grammarData) {
                     console.log("JSON Loaded Successfully:", grammarData);
                     
-                    // Ensure nested object rules are flattened correctly
+                    // Ensure nested object rules are correctly formatted
                     function flattenRules(data) {
                         let flattened = {};
                         for (let key in data) {
                             if (Array.isArray(data[key])) {
                                 flattened[key] = data[key];
                             } else if (typeof data[key] === 'object') {
-                                Object.assign(flattened, flattenRules(data[key]));
+                                for (let subKey in data[key]) {
+                                    flattened[`${key}.${subKey}`] = data[key][subKey];
+                                }
                             }
                         }
                         return flattened;
@@ -82,6 +84,7 @@
                     
                     let processedData = flattenRules(grammarData);
                     grammar = tracery.createGrammar(processedData);
+                    grammar.addModifiers(tracery.baseEngModifiers); // Add default English modifiers
                     generateStory();
                     setInterval(generateStory, 10000);
                 })
