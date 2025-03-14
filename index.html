@@ -88,8 +88,10 @@
                 
                 let mergedData = traceryData;
                 mergedData["Poe_Ready"] = poeReadyData;
+
+                let processedMerged = flattenRules(mergedData);
                 
-                grammar = tracery.createGrammar(mergedData);
+                grammar = tracery.createGrammar(processedMerged);
                 
                 try {
                     if (grammar.addModifiers) {
