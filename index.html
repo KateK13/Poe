@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,10 +33,6 @@
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
             line-height: 1.6;
         }
-        .fade {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
     </style>
 </head>
 <body>
@@ -49,7 +45,7 @@
         function generateStory() {
             if (grammar) {
                 let expansion = grammar.flatten("#origin#");
-                console.log("Generated Story:", expansion); // Debugging log
+                console.log("Generated Story:", expansion);
 
                 $("#output").fadeOut(500, function () {
                     $(this).text(expansion).fadeIn(500);
@@ -66,27 +62,30 @@
             $.when(
                 $.getJSON("Corrected_Poe_Tracery.json"),
                 $.getJSON("Poe_Ready.json")
-            ).done(function (traceryData, poeReadyData) {
+            ).done(function (traceryResponse, poeReadyResponse) {
                 console.log("Both JSON Files Loaded Successfully");
-                
-                let mergedData = {...traceryData[0], ...poeReadyData[0]};
-                
-                function flattenRules(data) {
-                    let flattened = {};
-                    for (let key in data) {
-                        if (Array.isArray(data[key])) {
-                            flattened[key] = data[key];
-                        } else if (typeof data[key] === 'object') {
-                            for (let subKey in data[key]) {
-                                flattened[`${key}.${subKey}`] = data[key][subKey];
-                            }
+
+                let traceryData = traceryResponse[0];
+                let poeReadyData = poeReadyResponse[0];
+
+                function mergeGrammar(target, source) {
+                    for (let key in target) {
+                        if (typeof target[key] === "object" && !Array.isArray(target[key])) {
+                            mergeGrammar(target[key], source);
+                        } else if (Array.isArray(target[key])) {
+                            target[key] = target[key].flatMap(entry =>
+                                typeof entry === "string" && entry.startsWith("#Poe_Ready.")
+                                    ? source[entry.replace("#Poe_Ready.", "")] || [entry]
+                                    : entry
+                            ).flat();
                         }
                     }
-                    return flattened;
                 }
-                
-                let processedData = flattenRules(mergedData);
-                grammar = tracery.createGrammar(processedData);
+
+                mergeGrammar(traceryData, poeReadyData);
+                console.log("Merged Data:", traceryData);
+
+                grammar = tracery.createGrammar(traceryData);
                 
                 try {
                     if (grammar.addModifiers) {
@@ -95,7 +94,7 @@
                 } catch (error) {
                     console.warn("Error applying modifiers:", error);
                 }
-                
+
                 generateStory();
                 setInterval(generateStory, 10000);
             }).fail(function (jqXHR, textStatus, errorThrown) {
