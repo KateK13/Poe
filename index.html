@@ -61,7 +61,7 @@
 
             $.when(
                 $.getJSON("Corrected_Poe_Tracery.json"),
-                $.getJSON("Poe_Ready.json")
+                $.getJSON("Poe_Ready.json"),
             ).done(function (traceryResponse, poeReadyResponse) {
                 console.log("Both JSON Files Loaded Successfully");
 
@@ -84,8 +84,6 @@
 
                 mergeGrammar(traceryData, poeReadyData);
                 console.log("Merged Data:", traceryData);
-
-                grammar = tracery.createGrammar(traceryData);
                 
                 try {
                     if (grammar.addModifiers) {
