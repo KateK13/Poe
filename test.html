@@ -65,8 +65,24 @@
                 let traceryData = traceryResponse[0];
                 let poeReadyData = poeReadyResponse[0];
 
-                console.log(traceryData);
-                console.log(poeReadyData);
+                function flattenRules(data) {
+                    let flattened = {};
+                    for (let key in data) {
+                        if (Array.isArray(data[key])) {
+                            flattened[key] = data[key];
+                        } else if (typeof data[key] === 'object') {
+                            for (let subKey in data[key]) {
+                                flattened[`${key}.${subKey}`] = data[key][subKey];
+                            }
+                        }
+                    }
+                    return flattened;
+                }
+
+                console.log(flattenRules(traceryData));
+                console.log(flattenRules(poeReadyData));
+
+                
 
                 /*function mergeGrammar(target, source) {
                     for (let key in target) {
