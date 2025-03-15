@@ -21,35 +21,44 @@
                     $.getJSON("Poe_Tracery.json"),
                     $.getJSON("Poe_Ready.json")
                 ).done(function(traceryData, poeData) {
-                    let traceryRules = traceryData[0];  // Extract data from array response
+                    let traceryRules = traceryData[0];  // Extract main data
                     let poeWords = poeData[0];
 
-                    // Merge Poe_Ready words into tracery grammar
-                    Object.keys(traceryRules.noun).forEach(function(category) {
-                        if (poeWords.noun[category]) {
-                            traceryRules.noun[category] = poeWords.noun[category];
-                        }
-                    });
+                    // Helper function to flatten nested objects into arrays
+                    function flattenCategory(categoryData) {
+                        return Object.values(categoryData).flat();
+                    }
 
-                    Object.keys(traceryRules.verb).forEach(function(category) {
-                        if (poeWords.verb[category]) {
-                            traceryRules.verb[category] = poeWords.verb[category];
-                        }
-                    });
+                    // Merge nouns, verbs, adjectives, and adverbs
+                    if (poeWords.noun) {
+                        Object.keys(poeWords.noun).forEach(function(category) {
+                            if (!traceryRules.noun[category]) traceryRules.noun[category] = [];
+                            traceryRules.noun[category] = flattenCategory(poeWords.noun);
+                        });
+                    }
 
-                    Object.keys(traceryRules.adj).forEach(function(category) {
-                        if (poeWords.adj[category]) {
-                            traceryRules.adj[category] = poeWords.adj[category];
-                        }
-                    });
+                    if (poeWords.verb) {
+                        Object.keys(poeWords.verb).forEach(function(category) {
+                            if (!traceryRules.verb[category]) traceryRules.verb[category] = [];
+                            traceryRules.verb[category] = flattenCategory(poeWords.verb);
+                        });
+                    }
 
-                    Object.keys(traceryRules.adv).forEach(function(category) {
-                        if (poeWords.adv[category]) {
-                            traceryRules.adv[category] = poeWords.adv[category];
-                        }
-                    });
+                    if (poeWords.adj) {
+                        Object.keys(poeWords.adj).forEach(function(category) {
+                            if (!traceryRules.adj[category]) traceryRules.adj[category] = [];
+                            traceryRules.adj[category] = flattenCategory(poeWords.adj);
+                        });
+                    }
 
-                    // Create and process the Tracery grammar
+                    if (poeWords.adv) {
+                        Object.keys(poeWords.adv).forEach(function(category) {
+                            if (!traceryRules.adv[category]) traceryRules.adv[category] = [];
+                            traceryRules.adv[category] = flattenCategory(poeWords.adv);
+                        });
+                    }
+
+                    // Create Tracery grammar
                     let grammar = tracery.createGrammar(traceryRules);
                     grammar.addModifiers(tracery.baseEngModifiers);
                     let story = grammar.flatten("#origin#");
