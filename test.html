@@ -82,7 +82,7 @@
                 }
 
                 mergeGrammar(traceryData, poeReadyData);
-                console.log("Merged Data:", traceryData);
+                console.log("Merged Data:", traceryData);*/
 
                 grammar = tracery.createGrammar(traceryData);
                 try {
@@ -91,7 +91,7 @@
                     }
                 } catch (error) {
                     console.warn("Error applying modifiers:", error);
-                }*/
+                }
 
                 generateStory();
                 setInterval(generateStory, 10000);
