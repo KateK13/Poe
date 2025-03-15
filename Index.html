@@ -1,50 +1,102 @@
-$(document).ready(function () {
-    console.log("Document Ready: Attempting to load JSON...");
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gothic Poe Generator</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/galaxykate/tracery@master/tracery.min.js"></script>
 
-    $.when(
-        $.getJSON("Corrected_Poe_Tracery.json"),
-        $.getJSON("Poe_Ready.json")
-    ).done(function (traceryResponse, poeReadyResponse) {
-        console.log("Both JSON Files Loaded Successfully");
+    <style>
+        body {
+            background-color: #121212;
+            color: #d4af37;
+            font-family: "Georgia", serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2em;
+            text-shadow: 2px 2px 5px black;
+        }
+        #output {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #444;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dark Tales of the Macabre</h1>
+    <p id="output">Loading...</p>
 
-        let traceryData = traceryResponse[0]; // Extract object from array
-        let poeReadyData = poeReadyResponse[0]; // Extract object from array
+    <script>
+        let grammar;
 
-        // Deep merge function to replace references with actual values
-        function mergeGrammar(target, source) {
-            for (let key in target) {
-                if (typeof target[key] === "object" && !Array.isArray(target[key])) {
-                    mergeGrammar(target[key], source);
-                } else if (Array.isArray(target[key])) {
-                    target[key] = target[key].flatMap(entry =>
-                        typeof entry === "string" && entry.startsWith("#Poe_Ready.")
-                            ? source[entry.replace("#Poe_Ready.", "")] || [entry] // Replace or keep as fallback
-                            : entry
-                    ).flat();
+        function generateStory() {
+            if (grammar) {
+                let expansion = grammar.flatten("#origin#");
+                console.log("Generated Story:", expansion);
+
+                $("#output").fadeOut(500, function () {
+                    $(this).text(expansion).fadeIn(500);
+                });
+            } else {
+                console.error("Grammar not loaded.");
+                $("#output").text("Failed to load grammar.");
+            }
+        }
+
+        $(document).ready(function () {
+            console.log("Document Ready: Attempting to load JSON...");
+
+            $.when(
+                $.getJSON("Corrected_Poe_Tracery.json"),
+                $.getJSON("Poe_Ready.json"),
+            ).done(function (traceryResponse, poeReadyResponse) {
+                console.log("Both JSON Files Loaded Successfully");
+
+                let traceryData = traceryResponse[0];
+                let poeReadyData = poeReadyResponse[0];
+
+                function mergeGrammar(target, source) {
+                    for (let key in target) {
+                        if (typeof target[key] === "object" && !Array.isArray(target[key])) {
+                            mergeGrammar(target[key], source);
+                        } else if (Array.isArray(target[key])) {
+                            target[key] = target[key].flatMap(entry =>
+                                typeof entry === "string" && entry.startsWith("#Poe_Ready.")
+                                    ? source[entry.replace("#Poe_Ready.", "")] || [entry]
+                                    : entry
+                            ).flat();
+                        }
+                    }
                 }
-            }
-        }
 
-        // Merge Poe_Ready.json into Corrected_Poe_Tracery.json
-        mergeGrammar(traceryData, poeReadyData);
+                mergeGrammar(traceryData, poeReadyData);
+                console.log("Merged Data:", traceryData);
 
-        console.log("Merged Data:", traceryData); // Debugging log
+                grammar = tracery.createGrammar(traceryData);
+                try {
+                    if (grammar.addModifiers) {
+                        grammar.addModifiers(tracery.baseEngModifiers);
+                    }
+                } catch (error) {
+                    console.warn("Error applying modifiers:", error);
+                }
 
-        // Create the grammar object
-        grammar = tracery.createGrammar(traceryData);
-
-        try {
-            if (grammar.addModifiers) {
-                grammar.addModifiers(tracery.baseEngModifiers);
-            }
-        } catch (error) {
-            console.warn("Error applying modifiers:", error);
-        }
-
-        generateStory();
-        setInterval(generateStory, 10000);
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        console.error("Error Loading JSON Files:", textStatus, errorThrown);
-        $("#output").text("Error: Unable to load grammar files.");
-    });
-});
+                generateStory();
+                setInterval(generateStory, 10000);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.error("Error Loading JSON Files:", textStatus, errorThrown);
+                $("#output").text("Error: Unable to load grammar files.");
+            });
+        });
+    </script>
+</body>
+</html>
