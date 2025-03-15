@@ -65,17 +65,21 @@
                 let traceryData = traceryResponse[0];
                 let poeReadyData = poeReadyResponse[0];
 
-                function flattenRules(data) {
+                function flattenRules(data, prefix = '') {
                     let flattened = {};
+                    
                     for (let key in data) {
+                        let newKey = prefix ? `${prefix}.${key}` : key;
+                        
                         if (Array.isArray(data[key])) {
-                            flattened[key] = data[key];
-                        } else if (typeof data[key] === 'object') {
-                            for (let subKey in data[key]) {
-                                flattened[`${key}.${subKey}`] = data[key][subKey];
-                            }
+                            flattened[newKey] = data[key];
+                        } else if (typeof data[key] === 'object' && data[key] !== null) {
+                            Object.assign(flattened, flattenRules(data[key], newKey));
+                        } else {
+                            flattened[newKey] = data[key];
                         }
                     }
+                    
                     return flattened;
                 }
 
