@@ -84,7 +84,8 @@
 
                 mergeGrammar(traceryData, poeReadyData);
                 console.log("Merged Data:", traceryData);
-                
+
+                grammar = tracery.createGrammar(traceryData);
                 try {
                     if (grammar.addModifiers) {
                         grammar.addModifiers(tracery.baseEngModifiers);
