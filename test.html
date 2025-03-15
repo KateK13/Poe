@@ -79,8 +79,7 @@
                     return flattened;
                 }
 
-                console.log(flattenRules(traceryData));
-                console.log(flattenRules(poeReadyData));
+                let finalGrammar = flattenRules({...traceryData, Poe_Ready: poeReadyData});
 
                 
 
@@ -101,7 +100,7 @@
                 mergeGrammar(traceryData, poeReadyData);
                 console.log("Merged Data:", traceryData);*/
 
-                grammar = tracery.createGrammar(traceryData);
+                grammar = tracery.createGrammar(finalGrammar);
                 try {
                     if (grammar.addModifiers) {
                         grammar.addModifiers(tracery.baseEngModifiers);
