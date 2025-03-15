@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poe-Inspired Mad Libs</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tracery/0.1.2/tracery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/galaxykate/tracery@master/tracery.js"></script>
 </head>
 <body>
     <h1>Edgar Allan Poe Story Generator</h1>
@@ -16,9 +16,45 @@
     <script>
         $(document).ready(function() {
             $("#generate").click(function() {
-                $.getJSON("Poe_Tracery.json", function(data) {
-                    let grammar = tracery.createGrammar(data);
+                // Load both JSON files
+                $.when(
+                    $.getJSON("Poe_Tracery.json"),
+                    $.getJSON("Poe_Ready.json")
+                ).done(function(traceryData, poeData) {
+                    let traceryRules = traceryData[0];  // Extract data from array response
+                    let poeWords = poeData[0];
+
+                    // Merge Poe_Ready words into tracery grammar
+                    Object.keys(traceryRules.noun).forEach(function(category) {
+                        if (poeWords.noun[category]) {
+                            traceryRules.noun[category] = poeWords.noun[category];
+                        }
+                    });
+
+                    Object.keys(traceryRules.verb).forEach(function(category) {
+                        if (poeWords.verb[category]) {
+                            traceryRules.verb[category] = poeWords.verb[category];
+                        }
+                    });
+
+                    Object.keys(traceryRules.adj).forEach(function(category) {
+                        if (poeWords.adj[category]) {
+                            traceryRules.adj[category] = poeWords.adj[category];
+                        }
+                    });
+
+                    Object.keys(traceryRules.adv).forEach(function(category) {
+                        if (poeWords.adv[category]) {
+                            traceryRules.adv[category] = poeWords.adv[category];
+                        }
+                    });
+
+                    // Create and process the Tracery grammar
+                    let grammar = tracery.createGrammar(traceryRules);
+                    grammar.addModifiers(tracery.baseEngModifiers);
                     let story = grammar.flatten("#origin#");
+
+                    // Display the generated story
                     $("#output").html(story);
                 }).fail(function() {
                     $("#output").html("Error loading story data.");
